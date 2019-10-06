@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    In Our Jeans
+  </title>
+  <meta name="description" content="In Our Jeans">
+
+  <!--SCRIPTS-->
+  <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script> 
+  <script src="main.js"></script>
+  <link href="style/main.css" rel="stylesheet" type="text/css">
+
+<!--BUTTON STYLE-->
+
+<style>
+  .button {
+    background-color: #ffe255;
+    border: none;
+    color: black;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    align-content: center;
+    left: 20%;
+    right: 20%;
+    top: 80%;
+    z-index: 1;
+    cursor: pointer;
+  }
+  
+  @font-face {
+      font-family: 'Avalon';
+      font-weight: regular;
+      font-style: regular;
+      src: url('https://files.cargocollective.com/c70498/Avalon.woff') format('woff');
+  }
+  
+  * {
+     font-family: Avalon;
+  }
+  
+  </style>
+
+
+
+</head>
+
+
+<body style='margin : 0px; overflow: hidden; background: black'>
+   
+
+<!-- Loading Symbol-->
+
+
+  <div id="splash">
+    <div class="loading"></div>
+    <div class="start-button">Start</div>
+  </div>
+
+
+  <a href="https://www.selfridges.com/GB/en/features/articles/the-new-order/meet-the-artist-jamie-maree-shipton/" class="button" target="_blank">Discover The New Order</a>
+
+
+
+ <!-- Load Scene-->
+    <a-scene shadow="type: pcfsoft" 
+             renderer="antialias: true;
+                       colorManagement: true;
+                       gammaOutput: true;
+                       gammaFactor: 2.2;
+                       metalness: 1;
+                       sortObjects: true;
+                       physicallyCorrectLights: true;"
+              embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled:false;"
+              loading-screen="dotsColor: red; backgroundColor: black">
+
+        <!--Load assets-->
+        <a-assets>
+          <a-asset-item id="flower" src="assets/flowercloner.gltf"></a-asset-item>
+          <a-asset-item id="squid" src="assets/squidcloner.gltf"></a-asset-item>
+          <a-asset-item id="water" src="assets/water.gltf"></a-asset-item>
+        </a-assets>
+
+
+
+
+
+
+
+
+    <!--AR MARKER FLOWER-->
+<a-marker type='pattern' url='https://raw.githubusercontent.com/weiprior/SBD/master/Markers/pattern-flower-marker.patt'>
+
+      
+      <!--Call Model-->
+
+<a-entity id="flower-animated" gltf-model="#flower" 
+        scale="0.01 0.01 0.01"
+        rotation="-90 0 0"
+        shadow="receive: true"
+        material="shader: standard; emissive: #FFF; emissiveIntesity: 3; wireframe: true;"
+        animation-mixer>
+      
+       
+      
+</a-entity>
+
+       <!-- <a-camera position="0 0 10" >
+                <a-cursor> </a-cursor>
+              </a-camera>-->
+              
+              <a-light type="point" color="#ffd0d0" intensity="7" position="0 10 10"></a-light>
+              <a-light type="point" color="#ffd0d0" intensity="4" position="0 0 -20"></a-light>
+              <a-light type="point" color="#ffd0d0" intensity="1" position="0 0 0"></a-light>
+              <a-entity light="type: ambient; color: #CCC"></a-entity>
+
+       </a-marker>
+
+
+
+
+
+
+
+
+
+
+
+<!--NEXT MODEL - SQUID-->
+
+      
+
+       <!--AR MARKER-->
+       <a-marker type='pattern' url='https://raw.githubusercontent.com/weiprior/SBD/master/Markers/pattern-squid-marker.patt'>
+
+      
+        <!--Call Model-->
+          <a-entity id="squid-animated" gltf-model="#squid" 
+          scale="0.01 0.01 0.01"
+          rotation="-90 0 0"
+          position="0 1 0"
+          shadow="receive: true"
+          material="shader: standard; emissive: #FFF; emissiveIntesity: 3; wireframe: true;"
+          animation-mixer>
+        
+          <a-animation
+          
+          attribute="position"
+          dur="3000"
+          from='0 2 0'
+          to="0 3 0.5"
+          direction='alternate-reverse'
+          repeat="indefinite"
+          easing="ease-in-out" ></a-animation>
+        
+        </a-entity>
+  
+        
+        
+        <a-light type="point" color="#000152" intensity="60" position="-0.5 2 -2" distance: 50; decay: 2></a-light>
+        <a-light type="point" color="fff" intensity="200" position="0.5 2 2" distance: 50; decay: 2></a-light>
+  
+  
+       </a-marker> -->
+
+
+
+
+
+
+
+
+
+
+<!--NEXT MODEL - WATER-->
+
+
+       <!--AR MARKER-->
+       <a-marker type='pattern' url='https://raw.githubusercontent.com/weiprior/SBD/master/Markers/pattern-water-marker.patt'>
+
+      
+        <!--Call Model-->
+          <a-entity id="water-animated" gltf-model="#water" 
+          scale="0.002 0.002 0.002"
+          rotation="-90 -90 0"
+          position="0 0 0"
+          shadow="receive: true"
+          material="shader: standard; emissive: #FFF; emissiveIntesity: 3; wireframe: true;"
+          animation-mixer>
+        
+          
+        
+        </a-entity>
+  
+        
+        
+        <a-light type="point" color="#ff5252" intensity="4" position="0 10 10"></a-light>
+        <a-light type="point" color="#ff5252" intensity="4" position="0 0 -20"></a-light>
+        <a-light type="point" color="#ffffff" intensity="2" position="0 0 0"></a-light>
+        <a-entity light="type: ambient; color: #CCC"></a-entity>
+  
+  
+       </a-marker> -->
+
+
+
+
+
+
+<!--CALL CAMERA-->
+          <a-entity camera></a-entity>
+
+<!--END SCENE-->          
+
+      </a-scene>
+   
+   
+   
+</body>
+
+</html>
